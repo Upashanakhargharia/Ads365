@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -9,13 +10,17 @@ export default function Navbar() {
         <img src="/images/logo.png" alt="Logo" />
       </div>
 
-      <nav className={`nav-links ${menuOpen ? "active" : ""}`}>
-        <a href="#/" onClick={() => setMenuOpen(false)}>Work</a>
-        <a href="#/" onClick={() => setMenuOpen(false)}>About Us</a>
-        <a href="#/" onClick={() => setMenuOpen(false)}>AI</a>
-        <a href="#/" onClick={() => setMenuOpen(false)}>Services</a>
-        <a href="#/" onClick={() => setMenuOpen(false)}>Blog</a>
-        <a href="#/" onClick={() => setMenuOpen(false)}>Locations</a>
+      <nav
+        id="mobile-navigation"
+        className={`nav-links ${menuOpen ? "active" : ""}`}
+      >
+        <NavLink to="/" onClick={() => setMenuOpen(false)}>Home</NavLink>
+        <NavLink to="/about" onClick={() => setMenuOpen(false)}>About Us</NavLink>
+        <NavLink to="/ai" onClick={() => setMenuOpen(false)}>AI</NavLink>
+        <NavLink to="/services" onClick={() => setMenuOpen(false)}>Services</NavLink>
+        <NavLink to="/blog" onClick={() => setMenuOpen(false)}>Blog</NavLink>
+        <NavLink to="/locations" onClick={() => setMenuOpen(false)}>Locations</NavLink>
+
         <button className="connect-btn mobile-btn">Let's Connect</button>
       </nav>
 
