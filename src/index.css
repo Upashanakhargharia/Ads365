@@ -614,12 +614,15 @@ a {
 }
 
 .ai-page {
-  position: relative;
-  min-height: 100vh;
-  overflow: hidden;
-  background: #7f8583;
-  font-family: "Inter", sans-serif;
-  isolation: isolate;
+    position: relative;
+    min-height: 100%;
+    overflow: hidden;
+    background: #7f8583;
+    font-family: "Inter", sans-serif;
+    isolation: isolate;
+    margin-top: -96px;
+    overflow-y: scroll;
+    background: linear-gradient(rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.18)), url(/images/AI-bg.png) center center / cover no-repeat;
 }
 
 .ai-page-bg,
@@ -629,12 +632,7 @@ a {
   pointer-events: none;
 }
 
-.ai-page-bg {
-  background:
-    linear-gradient(rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.18)),
-    url("/images/AI-bg.png") center center / cover no-repeat;
-  z-index: 0;
-}
+
 
 
 
@@ -648,7 +646,7 @@ a {
 }
 
 .ai-panel {
-  position: relative;
+  /* position: relative; */
   min-height: calc(100vh - 150px);
   overflow: hidden;
 }
@@ -703,12 +701,12 @@ a {
 
 /* stacked rhombus images */
 .ai-media {
-  position: absolute;
-  top: 0;
-  left: 46%;
-  width: 560px;
-  height: 100%;
-  z-index: 3;
+    position: absolute;
+    top: 0;
+    left: 56%;
+    width: 460px;
+    height: 100%;
+    z-index: 3;
 }
 
 .ai-card {
@@ -717,9 +715,9 @@ a {
 }
 
 .ai-card img {
-  display: block;
-  width: 100%;
-  height: auto;
+    display: block;
+    width: 90%;
+    height: auto;
 }
 .ai-card {
     width: 100% !important;
@@ -733,8 +731,8 @@ a {
 
 /* second image */
 .ai-card-middle {
-    top: 297px;
-    left: -129px;
+    top: 227px;
+    left: -85px;
     z-index: 5;
 }
 
@@ -742,15 +740,15 @@ a {
 
 /* third image */
 .ai-card-bottom {
-    top: 595px;
-    left: -317px;
+    top: 453px;
+    left: -227px;
     z-index: 5;
 }
 
 /* bottom partial image */
 .ai-card-last {
-    top: 895px;
-    left: -504px;
+    top: 677px;
+    left: -369px;
     z-index: 4;
 }
 
@@ -777,7 +775,7 @@ a {
 /* right text block */
 .ai-right-copy {
     position: absolute;
-    right: -3%;
+    right: 7%;
     bottom: 0;
     width: auto;
     color: #fff;
@@ -1040,6 +1038,35 @@ a {
   }
 }
 
+ .ai-scroll-track {
+  --set-h: 120vh;          /* adjust if your images are taller/shorter */
+  position: relative;
+  animation: ai-card-scroll 14s linear infinite;
+  will-change: transform;
+}
+ 
+.ai-scroll-track:hover {
+  animation-play-state: paused;
+}
+ 
+@keyframes ai-card-scroll {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(calc(-1 * var(--set-h))); }
+}
+ 
+/*
+  Each CardSet is position:relative so the absolutely-positioned
+  .ai-card children inside it are offset from the set's own top,
+  not from .ai-media. The set itself needs a fixed height so the
+  two sets stack correctly.
+*/
+.ai-card-set {
+  position: relative;
+  height: var(--set-h, 1190px);
+  width: 100%;
+}
+
+
 .services-page {
     position: relative;
     min-height: 100vh;
@@ -1256,5 +1283,308 @@ a {
     width: 30px;
     height: 30px;
     font-size: 16px;
+  }
+}
+.industries-page {
+    /* position: relative; */
+    /* min-height: 100vh; */
+    /* overflow: hidden; */
+    padding: 96px 0 0;
+    margin-top: -134px;
+    background: url(/images/industries.png) center center / cover no-repeat;
+}
+
+
+.industries-shell {
+    display: flex;
+    justify-content: end;
+}
+
+
+.industries-shell {
+    position: relative;
+    z-index: 3;
+    width: min(1400px, calc(100% - 32px));
+    min-height: 100vh;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.phone-hero {
+  width: min(860px, 100%);
+  margin: 30px auto 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.phone-hero img {
+  width: 100%;
+  max-width: 860px;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.industries-content {
+    margin-top: -10px;
+    text-align: center;
+    margin-bottom: 100px;
+}
+
+.industries-content h2 {
+  font-size: clamp(34px, 4vw, 56px);
+  line-height: 1.1;
+  color: #fff;
+  margin-bottom: 28px;
+  font-weight: 700;
+}
+
+.industries-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(90px, 1fr));
+  gap: 22px 18px;
+  justify-content: center;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.industry-item {
+  width: 100%;
+  min-height: 92px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 16px;
+  padding: 14px 10px;
+  color: rgba(255, 255, 255, 0.95);
+  background: transparent;
+  transition: 0.3s ease;
+}
+
+.industry-item i {
+  font-size: 30px;
+  line-height: 1;
+}
+
+.industry-item span {
+  font-size: 15px;
+  line-height: 1.2;
+  font-weight: 500;
+}
+
+.industry-item.active {
+  background: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(8px);
+}
+
+.industry-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 992px) {
+  .industries-grid {
+    grid-template-columns: repeat(4, minmax(90px, 1fr));
+    max-width: 760px;
+  }
+
+  .industries-content h2 {
+    margin-bottom: 22px;
+  }
+}
+
+@media (max-width: 768px) {
+  .industries-page {
+    padding-top: 86px;
+  }
+
+  .phone-hero {
+    margin-top: 20px;
+  }
+
+  .industries-grid {
+    grid-template-columns: repeat(3, minmax(86px, 1fr));
+    gap: 16px 14px;
+  }
+
+  .industry-item {
+    min-height: 84px;
+    border-radius: 14px;
+  }
+
+  .industry-item i {
+    font-size: 26px;
+  }
+
+  .industry-item span {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 576px) {
+  .industries-shell {
+    width: calc(100% - 20px);
+  }
+
+  .phone-hero {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .industries-content {
+    margin-top: 8px;
+  }
+
+  .industries-content h2 {
+    font-size: 30px;
+    margin-bottom: 18px;
+  }
+
+  .industries-grid {
+    grid-template-columns: repeat(2, minmax(110px, 1fr));
+    gap: 14px 12px;
+  }
+
+  .industry-item {
+    min-height: 82px;
+    padding: 12px 8px;
+  }
+
+  .industry-item i {
+    font-size: 24px;
+  }
+
+  .industry-item span {
+    font-size: 13px;
+  }
+}
+
+
+
+
+.locations {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  font-family: sans-serif;
+}
+
+/* LEFT SIDE */
+.locations-left {
+  width: 50%;
+  padding: 80px;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 2;
+}
+
+.locations-left h1 {
+  font-size: 64px;
+  margin-bottom: 20px;
+}
+
+.locations-left p {
+  max-width: 400px;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+.cta-btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 30px;
+  background: black;
+  color: white;
+  cursor: pointer;
+}
+
+/* RIGHT SIDE */
+.locations-right {
+  width: 50%;
+  position: relative;
+  clip-path: polygon(20% 0%, 100% 0%, 100% 100%, 0% 100%);
+  background: #0a0a0a;
+}
+
+/* IMAGE GRID */
+.image-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(4, 1fr);
+  height: 100%;
+}
+
+/* IMAGE BLOCKS */
+.img {
+  background-size: cover;
+  background-position: center;
+}
+
+/* PLACEHOLDERS (replace later) */
+.img1 {
+  background-image: url("https://picsum.photos/800/600?1");
+}
+
+.img2 {
+  background-image: url("https://picsum.photos/800/600?2");
+}
+
+.img3 {
+  background-image: url("https://picsum.photos/800/600?3");
+  position: relative;
+}
+
+.img4 {
+  background-image: url("https://picsum.photos/800/600?4");
+}
+
+/* PLAY BUTTON */
+.play-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  color: black;
+  border-radius: 50%;
+  padding: 12px 16px;
+  font-size: 18px;
+}
+
+/* BACKGROUND GRADIENT OVERLAY */
+.locations::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    rgba(0, 200, 150, 0.6),
+    rgba(0, 0, 0, 0.7)
+  );
+  z-index: 1;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .locations {
+    flex-direction: column;
+  }
+
+  .locations-left,
+  .locations-right {
+    width: 100%;
+  }
+
+  .locations-right {
+    clip-path: none;
+    height: 50vh;
   }
 }

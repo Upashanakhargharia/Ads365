@@ -7,6 +7,7 @@ import Blog from "./pages/Blog";
 import Locations from "./pages/Locations";
 import Contact from "./pages/Contact";
 import AI from "./pages/AI";
+import Industries from "./pages/Industries";
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
         <Route path="about" element={<About />} />
         <Route path="ai" element={<AI />} />
         <Route path="services" element={<Services />} />
+        <Route path="industries" element={<Industries />} />
         <Route path="blog" element={<Blog />} />
         <Route path="locations" element={<Locations />} />
         <Route path="contact" element={<Contact />} />
