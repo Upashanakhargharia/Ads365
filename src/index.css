@@ -645,9 +645,10 @@ a {
 }
 
 .ai-panel {
-  /* position: relative; */
-  min-height: calc(100vh - 150px);
-  overflow: hidden;
+    /* position: relative; */
+    min-height: calc(100vh - 150px);
+    overflow: hidden;
+    display: flex;
 }
 
 /* left green diagonal shape */
@@ -700,24 +701,22 @@ a {
 
 /* stacked rhombus images */
 .ai-media {
-    position: absolute;
-    top: 0;
-    left: 56%;
-    width: 460px;
-    height: 100%;
-    z-index: 3;
+    /* position: relative; */
+    /* top: 0; */
+    /* left: 56%; */
+    width: 360px;
+    /* height: 100%; */
+    /* z-index: 3; */
+    /* BACKGROUND: BEIGE; */
+    TRANSFORM: SKEW(-30DEG);
 }
 
 .ai-card {
-  position: absolute;
-  margin: 0;
+    margin-bottom: 16px;
+    transform: skew(30deg);
 }
 
-.ai-card img {
-    display: block;
-    width: 90%;
-    height: auto;
-}
+
 .ai-card {
     width: 100% !important;
 }
@@ -775,7 +774,7 @@ a {
 .ai-right-copy {
     position: absolute;
     right: 7%;
-    bottom: 0;
+    bottom: 98px;
     width: auto;
     color: #fff;
     text-align: left;
@@ -1053,6 +1052,9 @@ a {
   100% { transform: translateY(calc(-1 * var(--set-h))); }
 }
  
+
+
+
 /*
   Each CardSet is position:relative so the absolutely-positioned
   .ai-card children inside it are offset from the set's own top,
@@ -1466,124 +1468,57 @@ a {
 
 
 
-.locations {
-  display: flex;
+
+
+
+/* MEDIA CONTAINER */
+.ai-media {
   height: 100vh;
   overflow: hidden;
   position: relative;
-  font-family: sans-serif;
 }
 
-/* LEFT SIDE */
-.locations-left {
-  width: 50%;
-  padding: 80px;
-  color: black;
+/* MOVING TRACK */
+.ai-track {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  z-index: 2;
+  animation: aiScroll 18s linear infinite;
 }
 
-.locations-left h1 {
-  font-size: 64px;
-  margin-bottom: 20px;
+/* KEYFRAME = illusion of infinite scroll */
+@keyframes aiScroll {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
 }
 
-.locations-left p {
-  max-width: 400px;
-  margin-bottom: 30px;
-  line-height: 1.6;
+/* KEEP SPACING CONSISTENT */
+.ai-card {
+
+  margin-bottom: 16px;
 }
 
-.cta-btn {
-  padding: 12px 24px;
-  border: none;
-  border-radius: 30px;
-  background: black;
-  color: white;
-  cursor: pointer;
+.ai-card img {
+  width: 360px;
+  display: block;
+ 
 }
 
-/* RIGHT SIDE */
-.locations-right {
-  width: 50%;
-  position: relative;
-  clip-path: polygon(20% 0%, 100% 0%, 100% 100%, 0% 100%);
-  background: #0a0a0a;
-}
+/* divider */
 
-/* IMAGE GRID */
-.image-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: repeat(4, 1fr);
-  height: 100%;
-}
 
-/* IMAGE BLOCKS */
-.img {
-  background-size: cover;
-  background-position: center;
-}
-
-/* PLACEHOLDERS (replace later) */
-.img1 {
-  background-image: url("https://picsum.photos/800/600?1");
-}
-
-.img2 {
-  background-image: url("https://picsum.photos/800/600?2");
-}
-
-.img3 {
-  background-image: url("https://picsum.photos/800/600?3");
-  position: relative;
-}
-
-.img4 {
-  background-image: url("https://picsum.photos/800/600?4");
-}
-
-/* PLAY BUTTON */
-.play-btn {
+/* play button */
+.play-circle {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: white;
-  color: black;
-  border-radius: 50%;
-  padding: 12px 16px;
-  font-size: 18px;
 }
 
-/* BACKGROUND GRADIENT OVERLAY */
-.locations::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    120deg,
-    rgba(0, 200, 150, 0.6),
-    rgba(0, 0, 0, 0.7)
-  );
-  z-index: 1;
-}
-
-/* RESPONSIVE */
-@media (max-width: 768px) {
-  .locations {
-    flex-direction: column;
-  }
-
-  .locations-left,
-  .locations-right {
-    width: 100%;
-  }
-
-  .locations-right {
-    clip-path: none;
-    height: 50vh;
-  }
+/* pause on hover (makes it feel intentional, not gimmicky) */
+.ai-media:hover .ai-track {
+  animation-play-state: paused;
 }
